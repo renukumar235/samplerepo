@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/renukumar235/java-app.git']])
-            }
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/renukumar235/samplerepo.git']])
+            }   
         }
         stage('build') {
             steps {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('build-notify') {
             steps {
-                slackSend channel: 'channel01', message: 'build success', tokenCredentialId: 'slack'
+                slackSend channel: 'channel01', message: 'build success - samplerepo', tokenCredentialId: 'slack'
             }   
         }
         stage('Deploy to QA') {
@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy-notify') {
             steps {
-                slackSend channel: 'channel01', message: 'Deploy success', tokenCredentialId: 'slack'
+                slackSend channel: 'channel01', message: 'Deploy success - samplerepo', tokenCredentialId: 'slack'
             }
         }
     }
